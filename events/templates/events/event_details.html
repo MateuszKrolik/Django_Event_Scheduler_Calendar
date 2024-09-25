@@ -1,0 +1,28 @@
+{#events/templates/events/event_details.html#}
+
+{% extends 'base.html' %}
+
+{% block title %}{{ event.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 p-4 shadow">
+    <h1 class="mb-4">{{ event.name }}</h1>
+    <p>{{ event.long_description }}</p>
+    <p><strong>Start Time:</strong> {{ event.start_time }}</p>
+    <p><strong>Duration:</strong> {{ event.duration }} minutes</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    {% if event.image_url %}
+        <img src="https://rekrutacja.teamwsuws.pl{{ event.image_url }}" alt="{{ event.name }}" class="img-fluid mb-4">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+    <p><a href="{{ event.registration_link }}" class="btn btn-primary">Register Here</a></p>
+    <p><strong>Tags:</strong></p>
+    <ul class="list-inline">
+        {% for tag in event.tags %}
+        <li class="list-inline-item"><span class="badge bg-secondary">{{ tag.name }}</span></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'list_events' %}" class="btn btn-secondary mt-4">Back to Events</a>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+steps:
+  - name: python
+    entrypoint: pip
+    args: ['install', '-r', 'requirements.txt', '--user']
+
+  - name: python
+    entrypoint: python
+    args: ['-m', 'pytest', '-s']
+    secretEnv: ['SECRET_KEY', 'API_KEY']
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        'build',
+        '--platform=linux/amd64',
+        '-t',
+        'europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-event-scheduler:latest',
+        '.',
+      ]
+    env:
+      - 'DOCKER_BUILDKIT=1'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        'europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-event-scheduler:latest',
+      ]
+
+  - name: google/cloud-sdk
+    args:
+      [
+        'gcloud',
+        'run',
+        'deploy',
+        'mkrolik-event-scheduler',
+        '--image=europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-event-scheduler:latest',
+        '--region',
+        'europe-west1',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated',
+        '--memory',
+        '256Mi',
+        '--cpu',
+        '0.5',
+        '--max-instances',
+        '3',
+        '--port',
+        '8000',
+        '--set-secrets',
+        'API_KEY=API_KEY:latest,SECRET_KEY=SECRET_KEY:latest',
+        '--set-env-vars',
+        'IS_DEVELOPMENT=False',
+      ]
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/${PROJECT_ID}/secrets/SECRET_KEY/versions/latest
+      env: 'SECRET_KEY'
+    - versionName: projects/${PROJECT_ID}/secrets/API_KEY/versions/latest
+      env: 'API_KEY'
+
+images:
+  - europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-event-scheduler:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
