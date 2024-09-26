@@ -1,0 +1,33 @@
+{#events/templates/events/calendar_view.html#}
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Event Calendar{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">
+        <img src="{% static 'images/uws-white.svg' %}" alt="Logo" width="50" height="50" >
+        Event Calendar
+    </h1>
+    <div id="calendar"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: {{ events|safe }},
+        eventDidMount: function(info) {
+            info.el.style.color = 'white';
+        }
+    });
+    calendar.render();
+})
+</script>
+
+<link rel="stylesheet" href="{% static 'events/calendar_view.css' %}">
+{% endblock %}

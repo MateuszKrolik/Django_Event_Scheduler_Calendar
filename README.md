@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/MateuszKrolik/Django_Event_Scheduler_Calendar">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
+    <img src="images/uws-white.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Django_Event_Scheduler_Calendar</h3>
@@ -59,7 +59,7 @@
 
 ### Look at below video to see the WebSite in action 😉:
 
-https://github.com/user-attachments/assets/75fd1d95-bf28-4a05-a55f-5dfd988b0d35
+https://github.com/user-attachments/assets/05b57125-dfd1-41a7-8167-31aa5e236efc
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,12 +68,16 @@ https://github.com/user-attachments/assets/75fd1d95-bf28-4a05-a55f-5dfd988b0d35
 <!-- Languages -->
 
 - [![Python][Python.com]][Python-url]
+- [![JavaScript][JavaScript.com]][JavaScript-url]
+
 
 <!-- Web Tech -->
 
 - [![Django][Django.com]][Django-url]
 - [![Gunicorn][Gunicorn]][Gunicorn-url]
 - [![HTML5][HTML5.com]][HTML5-url]
+- [![Full Calendar][Full Calendar]][Full Calendar-url]
+
 
 <!-- Styling -->
 
@@ -161,6 +165,7 @@ chmod +x gcloud_custom.sh # make executable
 
 - [x] Monolithic Architecture: Model-View-Controller (MVC) via Python Django Framework
 - [x] Containerization via Docker and Docker-Compose
+- [x] Responsive Calendar via Full-Calendar JavaScript Library
 - [x] Test-Driven-Development(TDD) - Unit Testing via:
   - [x] PyTest
   - [x] Mock Requests
@@ -333,3 +338,7 @@ Project Repository Link: [https://github.com/MateuszKrolik/Django_Event_Schedule
 [GCP Compute Engine-url]: https://cloud.google.com/compute
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com/
+[JavaScript.com]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Full Calendar]: https://img.shields.io/badge/Full_Calendar-4285F4?style=for-the-badge&logo=google-calendar&logoColor=white
+[Full Calendar-url]: https://fullcalendar.io/

@@ -1,4 +1,5 @@
 # tests/test_views
+import json
 
 import pytest
 from django.urls import reverse
@@ -44,3 +45,17 @@ def test_event_details_view_404(client, mock_requests):
     response = client.get(reverse('event_details', args=[event_id]))
 
     assert response.status_code == 404
+
+def test_calendar_view(client, mock_requests):
+    url = 'https://rekrutacja.teamwsuws.pl/events/'
+    mock_requests.get(url, json=[{'id': 1, 'name': 'Event 1', 'start_time': '2024-09-26T10:00:00'}], status_code=200)
+
+    response = client.get(reverse('calendar_view'))
+
+    assert response.status_code == 200
+    assert 'events/calendar_view.html' in [t.name for t in response.templates]
+    events = json.loads(response.context['events'])
+    assert len(events) == 1
+    assert events[0]['title'] == 'Event 1'
+    assert events[0]['start'] == '2024-09-26T10:00:00'
+    assert events[0]['url'] == reverse('event_details', args=[1])

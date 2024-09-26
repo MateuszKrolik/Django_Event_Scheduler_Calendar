@@ -1,0 +1,19 @@
+/*static/css/base.css*/
+body {
+    background-color: #003D7C;
+    color: white;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 200; /* Extra light */
+}
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.navbar-brand, .nav-link {
+    font-weight: 700; /* Bold */
+}

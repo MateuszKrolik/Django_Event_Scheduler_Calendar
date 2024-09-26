@@ -1,0 +1,21 @@
+.fc {
+    color: white;
+}
+.fc .fc-toolbar-title {
+    color: white;
+}
+.fc .fc-daygrid-event {
+    color: white;
+}
+.fc .fc-daygrid-day-number {
+    color: white;
+}
+.fc .fc-daygrid-day-top a {
+    color: white;
+}
+.fc .fc-daygrid-day-top a:hover {
+    color: white;
+}
+.fc .fc-col-header-cell-cushion {
+    color: white;
+}
